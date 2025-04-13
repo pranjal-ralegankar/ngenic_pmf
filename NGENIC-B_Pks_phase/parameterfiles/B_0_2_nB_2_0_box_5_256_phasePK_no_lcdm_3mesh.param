@@ -1,0 +1,146 @@
+
+Nmesh           256        % This is the size of the FFT grid used to 
+                           % compute the displacement field. One
+                           % should have Nmesh >= Nsample.
+
+Nsample         256        % sets the maximum k that the code uses,
+                           % i.e. this effectively determines the
+                           % Nyquist frequency that the code assumes,
+                           % k_Nyquist = 2*PI/Box * Nsample/2
+                           % Normally, one chooses Nsample such that
+                           % Ntot =  Nsample^3, where Ntot is the
+                           % total number of particles
+ 
+
+Box              5000   % Periodic box size of simulation in kpc/h
+
+FileBase         ics                 % Base-filename of output files
+OutputDir        ../ics/   % Directory for output
+
+GlassFile         ./glassfiles/dummy_glass_CDM_B_NU_64_64_64.dat  % Glass-File
+GlassTileFac      4                % Number of times the glass file is
+                                  % tiled in each dimension (must be
+                                  % an integer)
+
+B1mpc            0.2  		% intended B avgd over 1 Mpc in units of nG
+nB    		 -2.0 	% spectral index of B power spectrum
+coeff    	0.0001081493046 	% This is the coefficient that specifies amplitude of the power spectrum
+
+kappa_b    	1.57	%This controls precise location Jeans scale for baryons
+kappa_dm    	0.77	%This controls precise location Jeans scale for baryons
+p_shape    	1.95	%This controls the shape of the power spectrum near Jeans scale
+
+lambda_pmf_b     3    %  coefficient of Lorentz force acting on delta_b; set to 0 to turn of magnetic fields
+lambda_pmf_dm    0.25    %  same for DM
+boost            2.23 		% factor to by multiplied with lambda_pmf so as to compensate for the reduced numerical matter power spectrum
+
+lambda_lcdm_b    0    %  set to 0 or 1 to turn on or off LCDM initial  conditions for baryons
+lambda_lcdm_dm   0    %  same for DM
+
+same_phase	0 % set to 0 or 1 to have lcdm and PMF phase different or same; 0 for isocurvature and 1 for no isocurvature.
+
+
+Omega            0.308       % Total matter density  (at z=0)
+OmegaLambda      0.692       % Cosmological constant (at z=0)
+OmegaBaryon      0.0482      % Baryon density        (at z=0)
+OmegaDM_2ndSpecies  0.001      % Omega for a second dark matter species (at z=0)
+HubbleParam      0.678       % Hubble paramater (may be used for power spec parameterization)
+
+Redshift         99        % Starting redshift
+
+Sigma8           0.0108               % power spectrum normalization at that Redshift!
+
+
+
+SphereMode       1         % if "1" only modes with |k| < k_Nyquist are
+                           % used (i.e. a sphere in k-space), otherwise modes with
+                           % |k_x|,|k_y|,|k_z| < k_Nyquist are used
+                           % (i.e. a cube in k-space)
+          
+
+WhichSpectrum    2         % "1" selects Eisenstein & Hu spectrum,
+		           % "2" selects a tabulated power spectrum in
+                           % the file 'FileWithInputSpectrum'
+                           % otherwise, Efstathiou parametrization is used
+
+
+%FileWithInputSpectrum   ./CAMB/PM_REF.dat  % filename of tabulated MATTER powerspectrum from CAMB
+
+FileWithInputSpectrumB   ./CAMB/Pb_lcdm.dat  % filename of tabulated MATTER powerspectrum from CAMB
+
+FileWithInputSpectrumDM   ./CAMB/PDM_lcdm.dat  % filename of tabulated MATTER powerspectrum from CAMB
+
+FileWithInputSpectrumBpmf   ./CAMB/Pb_pmf.dat  % filename of tabulated MATTER powerspectrum from CAMB
+
+FileWithInputSpectrumDMpmf   ./CAMB/PDM_pmf.dat  % filename of tabulated MATTER powerspectrum from CAMB
+
+FileWithInputSpectrum   ./CAMB/test_matterpower_z_99.dat  % filename of tabulated MATTER powerspectrum from CAMB
+
+
+
+%FileWithInputSpectrumB   ./CAMB/test_matterpower_z_99.dat  % filename of tabulated MATTER powerspectrum from CAMB
+
+%FileWithInputSpectrumDM   ./CAMB/test_matterpower_z_99.dat  % filename of tabulated MATTER powerspectrum from CAMB
+
+
+
+
+
+
+                                           
+FileWithTransfer        ./CAMB/test_transfer_out_z_99.dat  % filename of transfer functions from CAMB
+
+InputSpectrum_UnitLength_in_cm  3.085678e24 % defines length unit of tabulated
+                                            % input spectrum in cm/h. 
+                                            % Note: This can be chosen different from UnitLength_in_cm
+
+ReNormalizeInputSpectrum   0                % if set to zero, the
+                                            % tabulated spectrum is
+                                            % assumed to be normalized
+                                            % already in its amplitude to
+                                            % the starting redshift,
+                                            % otherwise this is recomputed
+                                            % based on the specified sigma8
+
+
+ShapeGamma       0.201     % only needed for Efstathiou power spectrum 
+PrimordialIndex  1.0       % may be used to tilt the primordial index (one if tabulated)
+
+		  
+Seed             181170    %  seed for IC-generator
+Seedb 		 324578    % seed for uncorrelated baryonic component
+klimitB          0.001   % for k>klimitB random phases for baryonic component will be different w.r.t. CDM [guess it's in internal h/kpc units]
+
+NumFilesWrittenInParallel 4  % limits the number of files that are
+                             % written in parallel when outputting
+
+
+UnitLength_in_cm          3.085678e21   % defines length unit of output (in cm/h) 
+UnitMass_in_g             1.989e43      % defines mass unit of output (in g/cm)
+UnitVelocity_in_cm_per_s  1e5           % defines velocity unit of output (in cm/sec)
+
+
+
+WDM_On               0      % Putting a '1' here will enable a WDM small-scale
+                            % smoothing of the power spectrum
+
+WDM_Vtherm_On        0      % If set to '1', the (warm) dark matter particles will
+                            % receive an additional random thermal velocity
+                            % corresponding to their particle mass
+
+WDM_PartMass_in_kev  10.0   % This is the particle mass in keV of the WDM particle
+
+
+NU_On                1
+NU_Vtherm_On         0
+NU_PartMass_in_ev    0.6
+
+
+
+
+
+
+
+
+
+

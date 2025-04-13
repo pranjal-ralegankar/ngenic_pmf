@@ -1,0 +1,22 @@
+cd /scratch/
+cd pralegan/
+cp -r ../../viel/NGENIC-B_PKs_RAND_2GAUSS_TOREAD/ .
+
+###running negenic code
+
+#someimtes to load modules need to run this again
+source ~/.bashrc
+
+#compiling 
+gmake clean
+gmake
+
+#edit params file
+#change outputdir
+#add that ouput dir:
+mkdir /scratch/pralegan/sims/foldername
+
+#running code
+mpirun -np 4 ./N-GenIC paramterfiles/pk_ics_dm bla
+
+
